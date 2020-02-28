@@ -9,4 +9,8 @@ class FileHandler
     @message = File.open(file).read.chomp
   end
 
+  def write_to_file(filename)
+    File.write(filename, @message)
+  end
+
 end
