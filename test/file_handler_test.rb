@@ -7,12 +7,14 @@ class EnigmaTest < Minitest::Test
 
   def test_it_exists
     file_handler = FileHandler.new("file")
+
     assert_instance_of FileHandler, file_handler
   end
 
   def test_it_has_a_file_but_no_message
     file = mock("file location")
     file_handler = FileHandler.new(file)
+
     assert_equal file, file_handler.file
     assert_nil file_handler.message
   end
@@ -31,10 +33,10 @@ class EnigmaTest < Minitest::Test
     file = "./fake_message.txt"
     file_handler = FileHandler.new(file)
     file_handler.create_message
-
     file_handler.write_to_file("fake_output_message.txt")
-    assert_equal true, File.exist?('./fake_output_message.txt')
 
+    assert_equal true, File.exist?('./fake_output_message.txt')
+    assert_equal true, file_handler.message == File.open(file).read.chomp
 
     File.delete("./fake_output_message.txt")
   end
