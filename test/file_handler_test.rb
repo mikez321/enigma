@@ -27,5 +27,17 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, file_handler.message
   end
 
+  def test_it_can_write_to_file
+    file = "./fake_message.txt"
+    file_handler = FileHandler.new(file)
+    file_handler.create_message
+
+    file_handler.write_to_file("fake_output_message.txt")
+    assert_equal true, File.exist?('./fake_output_message.txt')
+
+
+    File.delete("./fake_output_message.txt")
+  end
+
 
 end
