@@ -5,8 +5,8 @@ class FileHandler
     @message = nil
   end
 
-def create_message
-  @message = File.open(file).read
-end
+  def create_message
+    @message = File.open(file).read.chomp
+  end
 
 end
