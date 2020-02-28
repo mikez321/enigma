@@ -18,13 +18,14 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_read_a_message_and_store_it
+    file = "./fake_message.txt"
     file_handler = FileHandler.new(file)
-    file = mock("file location").stubs(:create_message).returns("Text inside txt file")
-    assert_nil file_handler.new(file)
-    @file_handler.create_message
+    file_handler.create_message
 
-    expected = "Text inside txt file"
-    assert_equal expected, @file_handler.message
+
+    expected = "hello world"
+    assert_equal expected, file_handler.message
   end
+
 
 end
