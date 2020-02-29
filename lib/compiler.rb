@@ -25,19 +25,19 @@ class Compiler
   end
 
   def scramble
-    deconstruct(word).map do |group|
+    deconstruct(message).map do |group|
       group.each_with_index.map do |letter, index|
         if index == 0
-          offset(letter, total_shift["a"])
+          offset(letter, @total_shift["a"])
         elsif
           index == 1
-          offset(letter, total_shift["b"])
+          offset(letter, @total_shift["b"])
         elsif
           index == 2
-          offset(letter, total_shift["c"])
+          offset(letter, @total_shift["c"])
         elsif
           index == 3
-          offset(letter, total_shift["d"])
+          offset(letter, @total_shift["d"])
         end
       end
     end.flatten.join("")
