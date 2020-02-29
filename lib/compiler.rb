@@ -21,9 +21,12 @@ class Compiler
     word.chars.each_slice(4).map { |letter| letter.push }
   end
 
-  # def offset(word, offset)
-  #   digitize(word).map do |num|
-  #     letterize(num + offset)
-  #   end
-  # end
+  def scramble(word, offset)
+    require "pry"; binding.pry
+    x = deconstruct(word)
+    y = Hash[offset.zip(x.first)]
+    y.transform_values do |value|
+      offset(value, y.key(value))
+    end.values
+  end
 end
