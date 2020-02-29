@@ -1,9 +1,10 @@
+require './modules/letterable'
 class Shifter
+  include Letterable
   attr_reader :key, :date
   def initialize(key, date)
     @key = key
     @date = date
-    @alphabet= ("a".."z").to_a << " "
   end
 
   def create_keys
@@ -24,7 +25,7 @@ class Shifter
     shifts = create_keys.zip(create_shift).map do |pair|
       pair.sum
     end
-    needed_letters = @alphabet[0..((shifts.length)-1)]
+    needed_letters = alphabet[0..((shifts.length)-1)]
     reference_shifts = Hash[needed_letters.zip(shifts)]
   end
 
