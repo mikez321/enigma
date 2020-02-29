@@ -3,6 +3,7 @@ class Shifter
   def initialize(key, date)
     @key = key
     @date = date
+    @alphabet= ("a".."z").to_a << " "
   end
 
   def create_keys
@@ -20,9 +21,11 @@ class Shifter
   end
 
   def total_shift
-    create_keys.zip(create_shift).flat_map do |pair|
+    shifts = create_keys.zip(create_shift).map do |pair|
       pair.sum
     end
+    needed_letters = @alphabet[0..((shifts.length)-1)]
+    reference_shifts = Hash[needed_letters.zip(shifts)]
   end
 
 end
