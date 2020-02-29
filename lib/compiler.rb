@@ -38,7 +38,7 @@ class Compiler
           offset(letter, ref_shifts["d"])
         end
       end
-    end
+    end.flatten.join("")
   end
 
 end

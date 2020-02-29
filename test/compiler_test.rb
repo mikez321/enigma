@@ -55,8 +55,7 @@ class CompilerTest < Minitest::Test
       "c" => 73,
       "d" => 20
     }
-    expected = [["k", "e", "d", "e"], ["r", " ", "o", "h"], ["u", "l", "w"]]
-
+    expected = "keder ohulw"
 
     assert_equal expected, @compiler.scramble("hello world", shift)
   end
