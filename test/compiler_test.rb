@@ -39,10 +39,10 @@ class CompilerTest < Minitest::Test
     assert_equal " ", @compiler.letterize(26)
   end
 
-  # def test_it_can_scramble_by_an_offset_amount
-  #   assert_equal ["f"], @compiler.scramble("d", 2)
-  #   assert_equal ["j", "g", "n", "n", "q"], @compiler.scramble("hello", 2)
-  # end
+  def test_it_can_scramble_by_an_offset_amount
+    assert_equal ["f"], @compiler.scramble("d", 2)
+    assert_equal ["j", "g", "n", "n", "q"], @compiler.scramble("hello", 2)
+  end
 
   def test_it_handles_messages_in_blocks_of_four
     expected = [['h', 'e', 'l', 'l'],['o', ' ', 'w', 'o'],['r', 'l', 'd']]
