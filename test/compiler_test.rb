@@ -70,16 +70,10 @@ class CompilerTest < Minitest::Test
   end
 
   def test_it_scrambles_and_returns_a_string
-    skip
-    shift = {
-      "a" => 3,
-      "b" => 27,
-      "c" => 73,
-      "d" => 20
-    }
-    expected = "keder ohulw"
 
-    assert_equal expected, @compiler.scramble("hello world", shift)
+    compiler = Compiler.new("hello world", @compiler_shift)
+
+    assert_equal "keder ohulw", compiler.scramble
   end
 
 end
