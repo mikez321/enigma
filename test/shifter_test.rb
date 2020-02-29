@@ -37,7 +37,4 @@ class ShifterTest < Minitest::Test
     assert_equal expected, @shifter.total_shift
   end
 
-  def test_it_can_associate_shifts_with_lettered_names
-
-  end
 end
