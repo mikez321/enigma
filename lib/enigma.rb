@@ -4,7 +4,7 @@ class Enigma
     @message = message
     @key = key
     @date = date
-    @alphabet= ("a".."z").to_a
+    @alphabet= ("a".."z").to_a << " "
   end
 
 end
