@@ -2,8 +2,9 @@ require './modules/letterable'
 class Compiler
   include Letterable
   attr_reader :message
-  def initialize(message)
+  def initialize(message, shift)
     @message = message
+    @shift = shift
   end
 
   def digitize(letter)
