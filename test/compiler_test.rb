@@ -31,8 +31,18 @@ class CompilerTest < Minitest::Test
     assert_equal [3], @compiler.digitize("d")
     assert_equal [10], @compiler.digitize("K")
     assert_equal [26], @compiler.digitize(" ")
-    assert_equal [7, 4, 11, 11, 14], @compiler.digitize("hello")
   end
+
+  def test_it_knows_letter_representations_of_numbers
+    assert_equal "d", @compiler.letterize(3)
+    assert_equal "k", @compiler.letterize(10)
+    assert_equal " ", @compiler.letterize(26)
+  end
+
+  # def test_it_can_scramble_by_an_offset_amount
+  #   assert_equal ["f"], @compiler.scramble("d", 2)
+  #   assert_equal ["j", "g", "n", "n", "q"], @compiler.scramble("hello", 2)
+  # end
 
   def test_it_handles_messages_in_blocks_of_four
     expected = [['h', 'e', 'l', 'l'],['o', ' ', 'w', 'o'],['r', 'l', 'd']]
