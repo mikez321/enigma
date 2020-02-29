@@ -3,7 +3,7 @@ require './lib/compiler'
 class Enigma
   attr_reader :message, :key, :date
   def initialize( message,
-                  key = rand(0..9999),
+                  key = rand(0..99999).to_s,
                   date = Date.today.strftime("%d%m%y"))
     @message = message
     @key = key
