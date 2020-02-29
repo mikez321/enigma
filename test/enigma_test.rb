@@ -31,4 +31,9 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
+  def test_it_has_a_date
+    enigma = Enigma.new
+    assert_instance_of Date, enigma.date
+  end
+
 end
