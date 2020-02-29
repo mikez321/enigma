@@ -18,43 +18,24 @@ class EnigmaTest < Minitest::Test
     assert_equal "02715", enigma.key
     assert_equal "040895", enigma.date
   end
-  #
-  # def test_it_can_encrypt_messages
-  #   enigma = Enigma.new
-  #     expected = {
-  #       encryption: "keder ohulw",
-  #       key: "02715",
-  #       date: "040895"
-  #     }
-  # assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
-  # end
-  #
-  # def test_it_can_decrypt_messages
-  #   enigma = Enigma.new
-  #   expected = {
-  #       decryption: "hello world",
-  #       key: "02715",
-  #       date: "040895"
-  #     }
-  #   assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
-  # end
-  #
-  # def test_the_date_is_formatted_for_key_generation
-  #   enigma = Enigma.new
-  #   Date.stubs(:today).returns(Date.new(1995, 03, 21))
-  #
-  #   assert_equal "210395", enigma.date
-  # end
-  #
-  # # def test_it_can_generate_a_random_number
-  # #   enigma = Enigma.new
-  # #
-  # #   assert_equal String, enigma.keygen.class
-  # # end
-  #
-  # def test_a_random_number_will_always_have_5_digits
-  #   enigma = Enigma.new
-  #   require "pry"; binding.pry
-  #   assert_equal "00298", enigma.keygen_validator
-  # end
+
+  def test_it_can_encrypt_messages
+    enigma = Enigma.new("hello world", "02715", "040895")
+      expected = {
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      }
+  assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
+  end
+
+  def test_it_can_decrypt_messages
+    enigma = Enigma.new("hello world", "02715", "040895")
+    expected = {
+        decryption: "hello world",
+        key: "02715",
+        date: "040895"
+      }
+    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+  end
 end
