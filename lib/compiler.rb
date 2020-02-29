@@ -27,7 +27,9 @@ class Compiler
   def scramble
     deconstruct(message).map do |group|
       group.each_with_index.map do |letter, index|
-        if index == 0
+        if !alphabet.include?(letter.downcase)
+          letter
+        elsif index == 0
           offset(letter, @total_shift["a"])
         elsif
           index == 1
