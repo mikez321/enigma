@@ -18,5 +18,17 @@ class EnigmaTest < Minitest::Test
     assert_equal "date", enigma.date
   end
 
+  def test_its_key_is_able_to_be_broken_apart
+    enigma = Enigma.new("message", "02715", "date")
+    assert_equal "02715", enigma.key
+    expected = {
+      "A" => "02",
+      "B" => "27",
+      "C" => "71",
+      "D" => "15"
+    }
 
+    assert_equal expected, enigma.create_keys
+
+  end
 end
