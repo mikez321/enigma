@@ -49,9 +49,16 @@ class CompilerTest < Minitest::Test
   end
 
   def test_it_scrambles_in_blocks_of_four
+    shift = {
+      "a" => 3,
+      "b" => 27,
+      "c" => 73,
+      "d" => 20
+    }
     expected = [["k", "e", "d", "e"], ["r", " ", "o", "h"], ["u", "l", "w"]]
 
-    assert_equal expected, @compiler.scramble("hello world", [3, 27, 73, 20])
+
+    assert_equal expected, @compiler.scramble("hello world", shift)
   end
 
 end
