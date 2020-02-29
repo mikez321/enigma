@@ -18,7 +18,7 @@ class Enigma
 
   def decrypt(ciphertext, key, date)
     shifter = Shifter.new(key, date)
-    
+
     ## here's the difference
     compiler_shift = shifter.compiler_ready_shift.transform_values do
        |value| value * -1
@@ -34,5 +34,8 @@ class Enigma
     }
   end
 
+  def date
+    Date.new
+  end
 
 end
