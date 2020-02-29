@@ -20,4 +20,12 @@ class Shifter
     (@date.to_i ** 2).to_s.split("")[-4..-1]
   end
 
+  def total_shift
+    create_keys.zip(create_shift).flat_map do |pair|
+      pair.map do |num|
+        num.to_i
+      end.sum 
+    end
+  end
+
 end
