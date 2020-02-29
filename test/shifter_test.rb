@@ -26,4 +26,8 @@ class ShifterTest < Minitest::Test
   def test_it_creates_a_shift_from_the_date
     assert_equal ["1", "0", "2", "5"], @shifter.create_shift
   end
+
+  def test_it_can_create_the_final_shifts
+    assert_equal [3, 27, 73, 20], @shifter.total_shift
+  end
 end
