@@ -25,7 +25,7 @@ class Shifter
     shifts = create_keys.zip(create_shift).map do |pair|
       pair.sum
     end
-    needed_letters = alphabet[0..((shifts.length)-1)]
+    needed_letters = alphabet[0..(shifts.length-1)]
     reference_shifts = Hash[needed_letters.zip(shifts)]
   end
 
