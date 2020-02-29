@@ -7,7 +7,7 @@ require './lib/compiler'
 class CompilerTest < Minitest::Test
 
   def setup
-    @compiler = Compiler.new("hello world")
+    @compiler = Compiler.new("hello world", "shift")
   end
 
   def test_it_exists
