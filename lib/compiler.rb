@@ -1,7 +1,8 @@
 require './modules/letterable'
 class Compiler
   include Letterable
-  attr_reader :message
+
+  attr_reader :message, :total_shift
   def initialize(message, total_shift)
     @message = message
     @total_shift = total_shift
@@ -19,11 +20,11 @@ class Compiler
       letterize((digitize(letter) + offset) % 27)
   end
 
-  def deconstruct(word)
-    word.chars.each_slice(4).map { |letter| letter.push }
+  def deconstruct(message)
+    message.chars.each_slice(4).map { |letter| letter.push }
   end
 
-  def scramble(word, total_shift)
+  def scramble
     deconstruct(word).map do |group|
       group.each_with_index.map do |letter, index|
         if index == 0
