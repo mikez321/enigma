@@ -24,7 +24,13 @@ class EnigmaTest < Minitest::Test
     #Today's date is 2/29/20
     Date.stubs(:today).returns(Date.new(2020, 02, 29))
     assert_equal "290220", enigma.date
+  end
 
+  def test_if_no_key_is_assigned_it_is_a_random_5_digit_number
+    #this test needs to be beefed up with a stub
+    enigma = Enigma.new("hello world")
+    assert_equal String, enigma.key.class
+    assert_equal 5, enigma.key.length
   end
 
   def test_it_can_encrypt_messages
