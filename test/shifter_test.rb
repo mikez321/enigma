@@ -28,6 +28,16 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_create_the_final_shifts
-    assert_equal [3, 27, 73, 20], @shifter.total_shift
+    expected = {
+      "a" => 3,
+      "b" => 27,
+      "c" => 73,
+      "d" => 20
+    }
+    assert_equal expected, @shifter.total_shift
+  end
+
+  def test_it_can_associate_shifts_with_lettered_names
+
   end
 end
