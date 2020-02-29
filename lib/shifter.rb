@@ -6,7 +6,7 @@ class Shifter
   end
 
   def create_keys
-    keys_from_input = @key.split("")
+    keys_from_input = @key.chars
     keys = []
     keys_from_input.each_with_index do |num, index|
       if index < (keys_from_input.length) - 1
@@ -17,7 +17,7 @@ class Shifter
   end
 
   def create_shift
-    (@date.to_i ** 2).to_s.split("").map { |num| num.to_i }[-4..-1]
+    (@date.to_i ** 2).to_s.chars.map { |num| num.to_i }[-4..-1]
   end
 
   def total_shift
