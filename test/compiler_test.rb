@@ -81,4 +81,10 @@ class CompilerTest < Minitest::Test
     assert_equal "keder ohulw", compiler.scramble
   end
 
+  def test_it_ignores_special_characters 
+
+    compiler = Compiler.new("HellO WORLD!", @compiler_shift)
+    assert_equal "keder ohulw!", compiler.scramble
+  end
+
 end
