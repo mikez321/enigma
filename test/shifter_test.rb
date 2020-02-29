@@ -20,10 +20,10 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_create_keys
-    assert_equal [2, 27, 71, 15], @shifter.create_keys
+    assert_equal ["02", "27", "71", "15"], @shifter.create_keys
   end
 
   def test_it_creates_a_shift_from_the_date
-    assert_equal [1, 0, 2, 5], @shifter.create_shift
+    assert_equal ["1", "0", "2", "5"], @shifter.create_shift
   end
 end
