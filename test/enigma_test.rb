@@ -18,4 +18,11 @@ class EnigmaTest < Minitest::Test
     assert_equal "date", @enigma.date
   end
 
+  def test_it_has_default_values
+  enigma1 = Enigma.new("Message to Encrypt")
+  assert_equal "Message to Encrypt", enigma1.message
+  assert_equal "default", enigma1.key
+  assert_equal "000000", enigma1.date
+  end
+
 end
