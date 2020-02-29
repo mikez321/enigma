@@ -2,6 +2,9 @@ require './lib/shifter'
 require './lib/compiler'
 class Enigma
 
+  def date
+    Date.today.strftime("%d%m%y")
+  end
 
   def encrypt(message, key, date)
     shifter = Shifter.new(key, date)
@@ -32,10 +35,6 @@ class Enigma
       key: key,
       date: date
     }
-  end
-
-  def date
-    Date.new
   end
 
 end
