@@ -6,6 +6,10 @@ class Enigma
     Date.today.strftime("%d%m%y")
   end
 
+  def keygen
+    rand(0..99999).to_s
+  end
+
   def encrypt(message, key, date)
     shifter = Shifter.new(key, date)
     compiler_shift = shifter.compiler_ready_shift
