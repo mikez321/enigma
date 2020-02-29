@@ -27,8 +27,16 @@ class CompilerTest < Minitest::Test
     assert_equal expected, @compiler.alphabet
   end
 
+  def test_it_knows_number_represenatations_of_letters
+    assert_equal [3], @compiler.digitize("d")
+    assert_equal [10], @compiler.digitize("K")
+    assert_equal [26], @compiler.digitize(" ")
+    assert_equal [7, 4, 11, 11, 14], @compiler.digitize("hello")
+  end
+
   def test_it_handles_messages_in_blocks_of_four
     expected = [['h', 'e', 'l', 'l'],['o', ' ', 'w', 'o'],['r', 'l', 'd']]
     assert_equal expected, @compiler.deconstruct(@compiler.message)
   end
+
 end
