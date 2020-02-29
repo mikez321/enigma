@@ -1,16 +1,17 @@
+require './modules/letterable'
 class Compiler
-  attr_reader :message, :alphabet
+  include Letterable
+  attr_reader :message
   def initialize(message)
     @message = message
-    @alphabet= ("a".."z").to_a << " "
   end
 
   def digitize(letter)
-    @alphabet.index(letter.downcase)
+    alphabet.index(letter.downcase)
   end
 
   def letterize(num)
-    @alphabet[num]
+    alphabet[num]
   end
 
   def offset(letter, offset)
