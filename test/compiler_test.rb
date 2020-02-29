@@ -3,13 +3,11 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/compiler'
-require './lib/shifter'
 
 class CompilerTest < Minitest::Test
 
   def setup
     @compiler = Compiler.new("hello world")
-    @shifter = Shifter.new("02715", "040895")
   end
 
   def test_it_exists
@@ -28,9 +26,9 @@ class CompilerTest < Minitest::Test
   end
 
   def test_it_knows_number_represenatations_of_letters
-    assert_equal [3], @compiler.digitize("d")
-    assert_equal [10], @compiler.digitize("K")
-    assert_equal [26], @compiler.digitize(" ")
+    assert_equal 3, @compiler.digitize("d")
+    assert_equal 10, @compiler.digitize("K")
+    assert_equal 26, @compiler.digitize(" ")
   end
 
   def test_it_knows_letter_representations_of_numbers
@@ -40,13 +38,21 @@ class CompilerTest < Minitest::Test
   end
 
   def test_it_can_scramble_by_an_offset_amount
-    assert_equal ["f"], @compiler.scramble("d", 2)
-    assert_equal ["j", "g", "n", "n", "q"], @compiler.scramble("hello", 2)
+    assert_equal "f", @compiler.offset("d", 2)
+    assert_equal "m", @compiler.offset("h", 5)
+    assert_equal "a", @compiler.offset("z", 2)
   end
 
   def test_it_handles_messages_in_blocks_of_four
     expected = [['h', 'e', 'l', 'l'],['o', ' ', 'w', 'o'],['r', 'l', 'd']]
     assert_equal expected, @compiler.deconstruct(@compiler.message)
+  end
+
+  def test_it_scrambles_in_blocks_of_four
+    skip
+    expected = [["k", "e", "d", "e"], ["r", " ", "o", "h"], ["u", "l", "w"]]
+
+    assert_equal expected, scramble("hello world", [3, 27, 73, 20])
   end
 
 end
