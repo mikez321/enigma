@@ -10,21 +10,19 @@ class Shifter
     keys = []
     keys_from_input.each_with_index do |num, index|
       if index < (keys_from_input.length) - 1
-      keys << (num + keys_from_input[index + 1])
+      keys << (num + keys_from_input[index + 1]).to_i
       end
     end
     keys
   end
 
   def create_shift
-    (@date.to_i ** 2).to_s.split("")[-4..-1]
+    (@date.to_i ** 2).to_s.split("").map { |num| num.to_i }[-4..-1]
   end
 
   def total_shift
     create_keys.zip(create_shift).flat_map do |pair|
-      pair.map do |num|
-        num.to_i
-      end.sum 
+      pair.sum
     end
   end
 
