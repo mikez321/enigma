@@ -39,5 +39,16 @@ class EnigmaTest < Minitest::Test
     assert_equal "210395", enigma.date
   end
 
+  def test_it_can_generate_a_random_number
+    enigma = Enigma.new
 
+    assert_equal String, enigma.keygen.class
+  end
+
+  def test_a_random_number_will_always_have_5_digits
+    enigma = Enigma.new
+    assert_equal 3, enigma.stubs(:keygen).returns(298)
+
+    assert_equal "00298", keygen_validator
+  end
 end
