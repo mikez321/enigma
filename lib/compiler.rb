@@ -2,9 +2,9 @@ require './modules/letterable'
 class Compiler
   include Letterable
   attr_reader :message
-  def initialize(message, shift)
+  def initialize(message, total_shift)
     @message = message
-    @shift = shift
+    @total_shift = total_shift
   end
 
   def digitize(letter)
@@ -23,20 +23,20 @@ class Compiler
     word.chars.each_slice(4).map { |letter| letter.push }
   end
 
-  def scramble(word, ref_shifts)
+  def scramble(word, total_shift)
     deconstruct(word).map do |group|
       group.each_with_index.map do |letter, index|
         if index == 0
-          offset(letter, ref_shifts["a"])
+          offset(letter, total_shift["a"])
         elsif
           index == 1
-          offset(letter, ref_shifts["b"])
+          offset(letter, total_shift["b"])
         elsif
           index == 2
-          offset(letter, ref_shifts["c"])
+          offset(letter, total_shift["c"])
         elsif
           index == 3
-          offset(letter, ref_shifts["d"])
+          offset(letter, total_shift["d"])
         end
       end
     end.flatten.join("")
