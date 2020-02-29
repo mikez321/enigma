@@ -48,7 +48,7 @@ class CompilerTest < Minitest::Test
     assert_equal expected, @compiler.deconstruct(@compiler.message)
   end
 
-  def test_it_scrambles_in_blocks_of_four
+  def test_it_scrambles_and_returns_a_string
     shift = {
       "a" => 3,
       "b" => 27,
