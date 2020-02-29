@@ -21,12 +21,23 @@ class Compiler
     word.chars.each_slice(4).map { |letter| letter.push }
   end
 
-  def scramble(word, offset)
-    require "pry"; binding.pry
-    x = deconstruct(word)
-    y = Hash[offset.zip(x.first)]
-    y.transform_values do |value|
-      offset(value, y.key(value))
-    end.values
+  def scramble(word, ref_shifts)
+    deconstruct(word).map do |group|
+      group.each_with_index.map do |letter, index|
+        if index == 0
+          offset(letter, ref_shifts["a"])
+        elsif
+          index == 1
+          offset(letter, ref_shifts["b"])
+        elsif
+          index == 2
+          offset(letter, ref_shifts["c"])
+        elsif
+          index == 3
+          offset(letter, ref_shifts["d"])
+        end
+      end
+    end
   end
+
 end
