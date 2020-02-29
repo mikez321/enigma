@@ -19,6 +19,14 @@ class EnigmaTest < Minitest::Test
     assert_equal "040895", enigma.date
   end
 
+  def test_if_no_date_is_entered_it_is_todays_date
+    enigma = Enigma.new("hello world", "02715")
+    #Today's date is 2/29/20
+    Date.stubs(:today).returns(Date.new(2020, 02, 29))
+    assert_equal "290220", enigma.date
+
+  end
+
   def test_it_can_encrypt_messages
     enigma = Enigma.new("hello world", "02715", "040895")
       expected = {
