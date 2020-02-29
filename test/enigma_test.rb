@@ -1,8 +1,9 @@
 require 'simplecov'
 SimpleCov.start
+require './lib/enigma'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/enigma'
+require 'mocha/minitest'
 
 class EnigmaTest < Minitest::Test
 
@@ -31,9 +32,12 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_it_has_a_date
+  def test_the_date_is_formatted_for_key_generation
     enigma = Enigma.new
-    assert_instance_of Date, enigma.date
+    Date.stubs(:today).returns(Date.new(1995, 03, 21))
+
+    assert_equal "210395", enigma.date
   end
+
 
 end
