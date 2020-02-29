@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
@@ -16,5 +18,5 @@ class EnigmaTest < Minitest::Test
     assert_equal "date", enigma.date
   end
 
-  
+
 end
