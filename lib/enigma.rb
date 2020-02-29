@@ -1,9 +1,13 @@
+require './lib/shifter'
 class Enigma
-  attr_reader :message, :key , :date
-  def initialize(message, key = "default", date = "000000")
-    @message = message
-    @key = key
-    @date = date
+
+
+  def encrypt(message, key, date)
+    shifter = Shifter.new(key, date)
+    keys = shifter.create_keys
+    shift = shifter.create_shift
+    compiler = Compiler.new()
   end
+
 
 end
