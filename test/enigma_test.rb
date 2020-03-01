@@ -30,6 +30,7 @@ class EnigmaTest < Minitest::Test
   def test_if_no_key_is_assigned_it_is_a_random_5_digit_number
     #this test needs to be beefed up with a stub
     enigma = Enigma.new("hello world")
+    enigma.stubs(:rand).returns("339")
     assert_equal String, enigma.key.class
     assert_equal 5, enigma.key.length
   end
