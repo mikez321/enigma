@@ -2,13 +2,29 @@ require './lib/shifter'
 require './lib/compiler'
 require 'date'
 class Enigma
-  attr_reader :message, :key, :date
-  def initialize( message,
-                  key = rand(0..99999).to_s,
-                  date = Date.today.strftime("%d%m%y"))
+  attr_reader :message
+  def initialize( message, key = "default", date = "default")
     @message = message
     @key = key
     @date = date
+  end
+
+  def date
+    if @date == "default"
+      @date = Date.today.strftime("%d%m%y")
+    end
+    @date
+  end
+
+  def key
+    if @key == "default"
+    default_key = rand(0..999).to_s
+      until default_key.length == 5
+        default_key = default_key.to_s.chars.unshift("0").join("")
+      end
+      @key = default_key
+    end
+    @key
   end
 
   def encrypt(message, key, date)

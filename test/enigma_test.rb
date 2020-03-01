@@ -20,19 +20,17 @@ class EnigmaTest < Minitest::Test
     assert_equal "040895", enigma.date
   end
 
-  def test_if_no_date_is_entered_it_is_todays_date
+  def test_it_assigns_todays_date_if_it_is_not_given_one
     Date.stubs(:today).returns(Date.new(2020, 2, 29))
-    enigma = Enigma.new("hello world", "02715")
-    #Today's date is 2/29/20
-    assert_equal "290220", enigma.date
+    #For the purpose of this test, today's date is Feb 29, 2020
+      enigma = Enigma.new("hello world", "02715")
+      assert_equal "290220", enigma.date
   end
 
   def test_if_no_key_is_assigned_it_is_a_random_5_digit_number
-    #this test needs to be beefed up with a stub
     enigma = Enigma.new("hello world")
     enigma.stubs(:rand).returns("339")
-    assert_equal String, enigma.key.class
-    assert_equal 5, enigma.key.length
+    assert_equal "00339", enigma.key
   end
 
   def test_it_can_encrypt_messages
