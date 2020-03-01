@@ -10,9 +10,19 @@ class Enigma
   end
 
   def date_verification
-    if @date = "default"
+    if @date == "default"
       @date = Date.today.strftime("%d%m%y")
     end
+  end
+
+  def key_verification
+    if @key == "default"
+    default_key = rand(0..999).to_s
+      until default_key.length == 5
+        default_key = default_key.to_s.chars.unshift("0").join("")
+      end
+    end
+    default_key
   end
 
   def encrypt(message, key, date)
