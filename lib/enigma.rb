@@ -3,21 +3,21 @@ require './lib/compiler'
 require 'date'
 class Enigma
   attr_reader :message
-  def initialize( message, key = "default", date = "default")
+  def initialize( message, key = nil, date = nil)
     @message = message
     @key = key
     @date = date
   end
 
   def date
-    if @date == "default"
+    if @date == nil
       @date = Date.today.strftime("%d%m%y")
     end
     @date
   end
 
   def key
-    if @key == "default"
+    if @key == nil
     default_key = rand(0..99999).to_s
       until default_key.length == 5
         default_key = default_key.to_s.chars.unshift("0").join("")
