@@ -1,7 +1,15 @@
 require './lib/shifter'
 require './lib/compiler'
+require 'date'
 class Enigma
-
+  attr_reader :message, :key, :date
+  def initialize( message,
+                  key = rand(0..99999).to_s,
+                  date = Date.today.strftime("%d%m%y"))
+    @message = message
+    @key = key
+    @date = date
+  end
 
   def encrypt(message, key, date)
     shifter = Shifter.new(key, date)
@@ -18,7 +26,7 @@ class Enigma
 
   def decrypt(ciphertext, key, date)
     shifter = Shifter.new(key, date)
-    
+
     ## here's the difference
     compiler_shift = shifter.compiler_ready_shift.transform_values do
        |value| value * -1
@@ -33,6 +41,5 @@ class Enigma
       date: date
     }
   end
-
 
 end

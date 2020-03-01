@@ -72,8 +72,19 @@ class CompilerTest < Minitest::Test
   def test_it_scrambles_and_returns_a_string
 
     compiler = Compiler.new("hello world", @compiler_shift)
-
     assert_equal "keder ohulw", compiler.scramble
+  end
+
+  def test_it_is_not_case_sensitive
+
+    compiler = Compiler.new("HellO WORLD", @compiler_shift)
+    assert_equal "keder ohulw", compiler.scramble
+  end
+
+  def test_it_ignores_special_characters 
+
+    compiler = Compiler.new("HellO WORLD!", @compiler_shift)
+    assert_equal "keder ohulw!", compiler.scramble
   end
 
 end
