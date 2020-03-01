@@ -33,6 +33,20 @@ class EnigmaTest < Minitest::Test
     assert_equal "00339", enigma.key
   end
 
+  def test_if_an_incorrect_key_is_assigned_it_will_assign_a_random_key
+    enigma1 = Enigma.new("hello world", "ABCD")
+    enigma1.stubs(:rand).returns("339")
+    assert_equal "00339", enigma1.key
+
+    enigma2 = Enigma.new("hello world", "00.912")
+    enigma2.stubs(:rand).returns("339")
+    assert_equal "00339", enigma2.key
+
+    enigma3 = Enigma.new("hello world", "12")
+    enigma3.stubs(:rand).returns("339")
+    assert_equal "00339", enigma3.key
+  end
+
   def test_it_can_encrypt_messages
     enigma = Enigma.new("hello world", "02715", "040895")
       expected = {
