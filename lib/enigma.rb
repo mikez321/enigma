@@ -3,12 +3,16 @@ require './lib/compiler'
 require 'date'
 class Enigma
   attr_reader :message, :key, :date
-  def initialize( message,
-                  key = rand(0..99999).to_s,
-                  date = Date.today.strftime("%d%m%y"))
+  def initialize( message, key = "default", date = "default")
     @message = message
     @key = key
     @date = date
+  end
+
+  def date_verification
+    if @date = "default"
+      @date = Date.today.strftime("%d%m%y")
+    end
   end
 
   def encrypt(message, key, date)
