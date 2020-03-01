@@ -1,6 +1,6 @@
-require './modules/letterable'
+require './modules/referenceable'
 class Compiler
-  include Letterable
+  include Referenceable
 
   attr_reader :message, :total_shift
   def initialize(message, total_shift)

@@ -1,6 +1,6 @@
-require './modules/letterable'
+require './modules/referenceable'
 class Shifter
-  include Letterable
+  include Referenceable
   attr_reader :key, :date
   def initialize(key, date)
     @key = key
