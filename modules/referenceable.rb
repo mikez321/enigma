@@ -5,7 +5,7 @@ module Referenceable
   end
 
   def numbers
-    (0..9).to_a
+    (0..9).to_a.map { |num| num.to_s }
   end
 
 
