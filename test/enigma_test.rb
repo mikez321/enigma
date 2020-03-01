@@ -22,12 +22,12 @@ class EnigmaTest < Minitest::Test
 
   def test_it_assigns_todays_date_if_it_is_not_given_one
     Date.stubs(:today).returns(Date.new(2020, 2, 29))
+    #For the purpose of this test, today's date is Feb 29, 2020
       enigma = Enigma.new("hello world", "02715")
       assert_equal "290220", enigma.date
   end
 
   def test_if_no_key_is_assigned_it_is_a_random_5_digit_number
-    #this test needs to be beefed up with a stub
     enigma = Enigma.new("hello world")
     enigma.stubs(:rand).returns("339")
     assert_equal "00339", enigma.key
