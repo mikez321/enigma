@@ -1,5 +1,6 @@
 require './lib/shifter'
 require './lib/compiler'
+require 'date'
 class Enigma
   attr_reader :message, :key, :date
   def initialize( message,
