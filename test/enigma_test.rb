@@ -44,6 +44,12 @@ class EnigmaTest < Minitest::Test
     assert_equal "290220", enigma.date_verification
   end
 
+  def test_it_can_create_deault_5_digit_keys_padded_by_0
+    enigma = Enigma.new("hello world")
+    enigma.stubs(:rand).returns("229")
+    assert_equal "00229", enigma.key_verification
+  end
+
   # def test_it_assigns_a_date_if_it_is_not_given_one
   #   skip
   #     Date.stubs(:today).returns(Date.new(2020, 2, 29))
