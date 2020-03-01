@@ -21,7 +21,8 @@ class Compiler
   end
 
   def deconstruct(message)
-    message.chars.each_slice(4).map { |letter| letter.push }
+    num_of_compilers = total_shift.keys.length
+    message.chars.each_slice(num_of_compilers).map { |letter| letter.push }
   end
 
   def scramble
