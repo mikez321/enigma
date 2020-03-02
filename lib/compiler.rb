@@ -21,8 +21,8 @@ class Compiler
   end
 
   def deconstruct(message)
-    num_of_compilers = total_shift.keys.length
-    message.chars.each_slice(num_of_compilers).map { |letter| letter.push }
+    num_of_shifts = total_shift.keys.length
+    message.chars.each_slice(num_of_shifts).map { |letter| letter.push }
   end
 
   def scramble
@@ -30,17 +30,8 @@ class Compiler
       group.each_with_index.map do |letter, index|
         if !alphabet.include?(letter.downcase)
           letter
-        elsif index == 0
-          offset(letter, @total_shift["a"])
-        elsif
-          index == 1
-          offset(letter, @total_shift["b"])
-        elsif
-          index == 2
-          offset(letter, @total_shift["c"])
-        elsif
-          index == 3
-          offset(letter, @total_shift["d"])
+        else
+          offset(letter, @total_shift[alphabet[index]])
         end
       end
     end.flatten.join("")
