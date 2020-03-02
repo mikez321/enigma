@@ -9,8 +9,10 @@ class ScramblerTest < Minitest::Test
     assert_instance_of Scrambler, scrambler
   end
 
-  def test_it_has_a_message
-    scrambler = Scrambler.new("hello world")
+  def test_it_has_attributes
+    scrambler = Scrambler.new("hello world", "02715", "040895")
     assert_equal "hello world", scrambler.message
+    assert_equal "02715", scrambler.key
+    assert_equal "040895", scrambler.date
   end
 end
