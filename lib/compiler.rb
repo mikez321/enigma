@@ -20,9 +20,12 @@ class Compiler
       letterize((digitize(letter) + offset) % 27)
   end
 
+  def number_of_shifts
+    total_shift.keys.length
+  end
+
   def deconstruct(message)
-    num_of_shifts = total_shift.keys.length
-    message.chars.each_slice(num_of_shifts).map { |letter| letter.push }
+    message.chars.each_slice(number_of_shifts).map { |letter| letter.push }
   end
 
   def scramble

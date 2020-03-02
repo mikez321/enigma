@@ -63,6 +63,25 @@ class CompilerTest < Minitest::Test
     assert_equal "a", compiler.offset("z", 2)
   end
 
+  def test_it_knows_the_number_of_shifts_needed
+    example_shift_1 = {
+            "a" => 2,
+            "b" => 11,
+          }
+    compiler1 = Compiler.new("hello world", example_shift_1)
+    assert_equal 2, compiler1.number_of_shifts
+
+    example_shift_2 = {
+            "a" => 2,
+            "b" => 11,
+            "c" => 92,
+            "d" => 4,
+            "e" => 50
+          }
+    compiler2 = Compiler.new("hello world", example_shift_2)
+    assert_equal 5, compiler2.number_of_shifts
+  end
+
   def test_it_handles_messages_in_blocks_of_four
     compiler = Compiler.new("hello world", @compiler_shift)
     expected = [['h', 'e', 'l', 'l'],['o', ' ', 'w', 'o'],['r', 'l', 'd']]
@@ -81,7 +100,7 @@ class CompilerTest < Minitest::Test
     assert_equal "keder ohulw", compiler.scramble
   end
 
-  def test_it_ignores_special_characters 
+  def test_it_ignores_special_characters
 
     compiler = Compiler.new("HellO WORLD!", @compiler_shift)
     assert_equal "keder ohulw!", compiler.scramble
