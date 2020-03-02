@@ -17,8 +17,11 @@ class Shifter
     key_shift
   end
 
+  def date_squared
+    (@date.to_i ** 2).to_s
+  end
+
   def create_date_shift
-    date_squared = (@date.to_i ** 2).to_s
     date_squared.chars.map { |num| num.to_i }[-4..-1]
   end
 
