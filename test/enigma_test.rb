@@ -26,6 +26,19 @@ class EnigmaTest < Minitest::Test
       assert_equal "290220", enigma.date
   end
 
+  def test_if_an_incorrect_date_is_assigned_it_will_assign_a_random_date
+    Date.stubs(:today).returns(Date.new(2020, 2, 29))
+
+    enigma1 = Enigma.new("02715", "895")
+    assert_equal "290220", enigma1.date
+
+    enigma2 = Enigma.new("02715")
+    assert_equal "290220", enigma2.date
+
+    enigma3 = Enigma.new("02715")
+    assert_equal "290220", enigma3.date
+  end
+
   def test_if_no_key_is_assigned_it_is_a_random_5_digit_number
     enigma = Enigma.new
     enigma.stubs(:rand).returns("339")
