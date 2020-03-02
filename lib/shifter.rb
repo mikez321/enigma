@@ -8,17 +8,18 @@ class Shifter
   end
 
   def create_key_shift
-    key_shift = []
-    @key.chars.each_with_index do |num, index|
+    @key.chars.each_with_index.map do |num, index|
       if index < (@key.chars.length) - 1
-      key_shift << (num + @key.chars[index + 1]).to_i
+        (num + @key.chars[index + 1]).to_i
       end
-    end
-    key_shift
+    end.compact
+  end
+
+  def date_squared
+    (@date.to_i ** 2).to_s
   end
 
   def create_date_shift
-    date_squared = (@date.to_i ** 2).to_s
     date_squared.chars.map { |num| num.to_i }[-4..-1]
   end
 

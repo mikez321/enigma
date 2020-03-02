@@ -19,8 +19,12 @@ class ShifterTest < Minitest::Test
     assert_equal "040895", @shifter.date
   end
 
-  def test_it_can_create_keys
+  def test_it_can_create_key_shift
     assert_equal [2, 27, 71, 15], @shifter.create_key_shift
+  end
+
+  def test_it_can_square_dates
+    assert_equal "1672401025", @shifter.date_squared
   end
 
   def test_it_creates_a_shift_from_the_date

@@ -20,8 +20,12 @@ class Compiler
       letterize((digitize(letter) + offset) % 27)
   end
 
+  def number_of_shifts
+    total_shift.keys.length
+  end
+
   def deconstruct(message)
-    message.chars.each_slice(4).map { |letter| letter.push }
+    message.chars.each_slice(number_of_shifts).map { |letter| letter.push }
   end
 
   def scramble
@@ -29,17 +33,8 @@ class Compiler
       group.each_with_index.map do |letter, index|
         if !alphabet.include?(letter.downcase)
           letter
-        elsif index == 0
-          offset(letter, @total_shift["a"])
-        elsif
-          index == 1
-          offset(letter, @total_shift["b"])
-        elsif
-          index == 2
-          offset(letter, @total_shift["c"])
-        elsif
-          index == 3
-          offset(letter, @total_shift["d"])
+        else
+          offset(letter, @total_shift[alphabet[index]])
         end
       end
     end.flatten.join("")
