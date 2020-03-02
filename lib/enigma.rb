@@ -4,9 +4,7 @@ require 'date'
 require './modules/referenceable'
 class Enigma
   include Referenceable
-  attr_reader :message
-  def initialize( message, key = nil, date = nil)
-    @message = message
+  def initialize(key = nil, date = nil)
     @key = key
     @date = date
   end
