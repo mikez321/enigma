@@ -4,19 +4,13 @@ require 'date'
 require './modules/referenceable'
 class Enigma
   include Referenceable
-  def initialize(key = nil, date = nil)
-    @key = key
-    @date = date
-    @given_key_used = true
-    @given_date_used = true
-  end
 
   def date
     if @date == nil || @date.chars.map { |num| numbers.include?(num) }.all?(false) || @date.length !=6
       @date = Date.today.strftime("%d%m%y")
     end
-    @given_date_used = false
-    @date
+    # @given_date_used = false
+    # @date
   end
 
   def key
@@ -27,23 +21,26 @@ class Enigma
       end
       @key = default_key
     end
-    @given_key_used = false
-    @key
+    # @given_key_used = false
+    # @key
   end
+
+  # def error_message
+  #   if @given_key_used == false
+  #     puts "WARNING: The given key was invalid or missing."
+  #   end
+  #
+  #   if @given_date_used == false
+  #     puts "WARNING: The given date was invalid or missing."
+  #   end
+  # end
 
   def encrypt(message, optional_key = key, optional_date = date)
     shifter = Shifter.new(optional_key, optional_date)
     compiler_shift = shifter.compiler_ready_shift
     compiler = Compiler.new(message, compiler_shift)
     cipher = compiler.scramble
-
-    if @given_key_used == false
-      puts "WARNING: The given key was invalid or missing."
-    end
-
-    if @given_date_used == false
-      puts "WARNING: The given date was invalid or missing."
-    end
+    # error_message
 
     output = {
       encryption: cipher,
