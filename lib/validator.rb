@@ -4,6 +4,20 @@ class Validator
   def initialize(key = nil, date = nil)
     @key = key
     @date = date
+    @valid_key = nil
+    @valid_date = nil
+  end
+
+  def key_length
+    @key.length
+  end
+
+  def key_only_numbers?
+    @key.chars.map { |num| numbers.include?(num) }.all?(true)
+  end
+
+  def valid_key?
+    @key != nil && key_length == 5 && key_only_numbers?
   end
 
   def key
