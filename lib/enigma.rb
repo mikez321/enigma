@@ -1,10 +1,32 @@
-require './lib/scrambler'
 require './lib/shifter'
 require './lib/compiler'
 require 'date'
-class Enigma < Scrambler
-  def initialize
-    super()
+require './modules/referenceable'
+class Enigma
+  include Referenceable
+  attr_reader :message
+  def initialize( message, key = nil, date = nil)
+    @message = message
+    @key = key
+    @date = date
+  end
+
+  def date
+    if @date == nil
+      @date = Date.today.strftime("%d%m%y")
+    end
+    @date
+  end
+
+  def key
+    if @key == nil || @key.chars.map { |num| numbers.include?(num) }.all?(false) || @key.length != 5
+    default_key = rand(0..99999).to_s
+      until default_key.length == 5
+        default_key = default_key.to_s.chars.unshift("0").join("")
+      end
+      @key = default_key
+    end
+    @key
   end
 
   def encrypt(message, key, date)
