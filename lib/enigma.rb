@@ -27,21 +27,21 @@ class Enigma
     @key
   end
 
-  def encrypt(message, key, date)
-    shifter = Shifter.new(key, date)
+  def encrypt(message, optional_key = key, optional_date = date)
+    shifter = Shifter.new(optional_key, optional_date)
     compiler_shift = shifter.compiler_ready_shift
     compiler = Compiler.new(message, compiler_shift)
     cipher = compiler.scramble
 
     output = {
       encryption: cipher,
-      key: key,
-      date: date
+      key: optional_key,
+      date: optional_date
     }
   end
 
-  def decrypt(ciphertext, key, date)
-    shifter = Shifter.new(key, date)
+  def decrypt(ciphertext, optional_key = key, optional_date = date)
+    shifter = Shifter.new(optional_key, optional_date)
 
     ## here's the difference
     compiler_shift = shifter.compiler_ready_shift.transform_values do
@@ -53,8 +53,8 @@ class Enigma
 
     output = {
       decryption: message,
-      key: key,
-      date: date
+      key: optional_key,
+      date: optional_date
     }
   end
 
