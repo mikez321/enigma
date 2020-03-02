@@ -10,7 +10,7 @@ class Enigma
   end
 
   def date
-    if @date == nil
+    if @date == nil || @date.chars.map { |num| numbers.include?(num) }.all?(false) || @date.length !=6
       @date = Date.today.strftime("%d%m%y")
     end
     @date
