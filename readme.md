@@ -1,6 +1,6 @@
 # Final Project: Enigma #
 
-### Self Assessment of Enigma project: Self-score 3.2###
+### Self Assessment of Enigma project: Self-score 3.2 ###
 
 **Functionality:  3 Meets Expectations**
 
