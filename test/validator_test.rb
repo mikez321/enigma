@@ -13,7 +13,7 @@ class ValidatorTest < Minitest::Test
 
   def test_it_can_return_a_valid_key
     validator = Validator.new("02715", "030220")
-    validator.validate_key
+    validator.validate_start_key
     assert_equal "02715", validator.valid_key
   end
 
@@ -52,25 +52,24 @@ class ValidatorTest < Minitest::Test
   def test_if_an_incorrect_key_is_assigned_it_will_assign_a_random_key
     validator1 = Validator.new("ABCD")
     validator1.stubs(:rand).returns("3907")
-    validator1.validate_key
+    validator1.validate_start_key
     assert_equal "03907", validator1.valid_key
 
     validator2 = Validator.new("83620")
-    validator2.validate_key
+    validator2.validate_start_key
     assert_equal "83620", validator2.valid_key
   end
 
   def test_random_keys_will_be_padded_by_0_if_not_5_numbers
     validator = Validator.new("14", "030220")
     validator.stubs(:rand).returns("339")
-    validator.validate_key
+    validator.validate_start_key
     assert_equal "00339", validator.valid_key
   end
 
   def test_it_can_return_a_valid_date
-    skip
     validator = Validator.new("02715", "030220")
-    validator.validate_date
+    validator.validate_start_date
     assert_equal ("030220"), validator.valid_date
   end
 
@@ -85,7 +84,6 @@ class ValidatorTest < Minitest::Test
 
     validator2 = Validator.new("02715", "JJ67LE")
     assert_equal false, validator2.start_date_only_numbers?
-
   end
 
   def test_it_can_break_apart_valid_dates
@@ -101,32 +99,34 @@ class ValidatorTest < Minitest::Test
   def test_it_can_validate_a_real_date_with_its_parts
     validator1 = Validator.new("02715", "030220")
     validator1.start_date_parts
-    assert_equal true, validator1.real_date?
+    assert_equal true, validator1.start_date_real?
 
     validator2 = Validator.new("02715", "829990")
     validator2.start_date_parts
-    assert_equal false, validator2.real_date?
+    assert_equal false, validator2.start_date_real?
   end
 
   def test_it_assigns_todays_date_if_it_is_not_given_one
-    skip
     Date.stubs(:today).returns(Date.new(2020, 2, 29))
     #For the purpose of this test, today's date is Feb 29, 2020
       validator = Validator.new
-      assert_equal "290220", validator.date
+      validator.validate_start_date
+      assert_equal "290220", validator.valid_date
   end
 
   def test_if_an_incorrect_date_is_assigned_it_will_assign_a_random_date
-    skip
     Date.stubs(:today).returns(Date.new(2020, 2, 29))
 
     validator1 = Validator.new("02715", "895")
-    assert_equal "290220", validator1.date
+    validator1.validate_start_date
+    assert_equal "290220", validator1.valid_date
 
     validator2 = Validator.new("02715", "8.11")
-    assert_equal "290220", validator2.date
+    validator2.validate_start_date
+    assert_equal "290220", validator2.valid_date
 
     validator3 = Validator.new("02715", "Josh")
-    assert_equal "290220", validator3.date
+    validator3.validate_start_date
+    assert_equal "290220", validator3.valid_date
   end
 end
