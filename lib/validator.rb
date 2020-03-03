@@ -1,28 +1,30 @@
 require './modules/referenceable'
+require 'date'
 class Validator
   include Referenceable
   attr_reader :valid_key
-  def initialize(starting_key = nil, date = nil)
-    @starting_key = starting_key
-    @date = date
+  def initialize(start_key = nil, start_date = nil)
+    @start_key = start_key
+    @start_date = start_date
     @valid_key = nil
+    @valid_date = nil
   end
 
-  def starting_key_length
-    @starting_key.length
+  def start_key_length
+    @start_key.length
   end
 
-  def starting_key_only_numbers?
-    @starting_key.chars.map { |num| numbers.include?(num) }.all?(true)
+  def start_key_only_numbers?
+    @start_key.chars.map { |num| numbers.include?(num) }.all?(true)
   end
 
-  def valid_starting_key?
-    @starting_key != nil && starting_key_length == 5 && starting_key_only_numbers?
+  def valid_start_key?
+    @start_key != nil && start_key_length == 5 && start_key_only_numbers?
   end
 
   def validate_key
-    if valid_starting_key?
-      @valid_key = @starting_key
+    if valid_start_key?
+      @valid_key = @start_key
     else
       generated_key = rand(0..99999).to_s
       until generated_key.length == 5
@@ -32,13 +34,40 @@ class Validator
     end
   end
 
-  def date
-    if @date == nil || @date.chars.map { |num| numbers.include?(num) }.all?(false) || @date.length !=6
-      @date = Date.today.strftime("%d%m%y")
-    end
-    @given_date_used = false
-    @date
+  def start_date_length
+    @start_date.length
   end
+
+  def start_date_only_numbers?
+    @start_date.chars.map { |num| numbers.include?(num) }.all?(true)
+  end
+
+  def start_date_parts
+    date_pairs = @start_date.chars.each_slice(2).map { |num| num }
+    dmy = {}
+      dmy["month"] = date_pairs[0].join("")
+      dmy["day"] = date_pairs[1].join("")
+      dmy["year"] = date_pairs[2].join("")
+      dmy
+  end
+
+  def real_date?
+    d = start_date_parts["day"].to_i
+    m = start_date_parts["month"].to_i
+    y = ("20" + start_date_parts["year"]).to_i
+    Date.valid_date?(y, m, d)
+  end
+
+  def valid_start_date?
+    start_date_length == 6 && real_date?
+  end
+
+  #   if @date == nil || @date.chars.map { |num| numbers.include?(num) }.all?(false) || @date.length !=6
+  #     @date = Date.today.strftime("%d%m%y")
+  #   end
+  #   @given_date_used = false
+  #   @date
+  # end
 
   # def error_message
   #   if @given_key_used == false
