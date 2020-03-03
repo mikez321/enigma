@@ -1,36 +1,35 @@
 require './modules/referenceable'
 class Validator
   include Referenceable
-  def initialize(key = nil, date = nil)
-    @key = key
+  attr_reader :valid_key
+  def initialize(starting_key = nil, date = nil)
+    @starting_key = starting_key
     @date = date
     @valid_key = nil
-    @valid_date = nil
   end
 
-  def key_length
-    @key.length
+  def starting_key_length
+    @starting_key.length
   end
 
-  def key_only_numbers?
-    @key.chars.map { |num| numbers.include?(num) }.all?(true)
+  def starting_key_only_numbers?
+    @starting_key.chars.map { |num| numbers.include?(num) }.all?(true)
   end
 
-  def valid_key?
-    @key != nil && key_length == 5 && key_only_numbers?
+  def valid_starting_key?
+    @starting_key != nil && starting_key_length == 5 && starting_key_only_numbers?
   end
 
-  def key
-    if @key == nil || @key.chars.map { |num| numbers.include?(num) }.all?(false) || @key.length != 5
-    default_key = rand(0..99999).to_s
-      until default_key.length == 5
-        default_key = default_key.to_s.chars.unshift("0").join("")
+  def validate_key
+    if valid_starting_key?
+      @valid_key = @starting_key
+    else
+      generated_key = rand(0..99999).to_s
+      until generated_key.length == 5
+        generated_key = generated_key.to_s.chars.unshift("0").join("")
       end
-      default_key
-      @key = default_key
+      @valid_key = generated_key
     end
-    @given_key_used = false
-    @key
   end
 
   def date
