@@ -91,8 +91,8 @@ class ValidatorTest < Minitest::Test
   def test_it_can_break_apart_valid_dates
     validator = Validator.new("02715", "030220")
     expected = {
-      "month" => "03",
-      "day" => "02",
+      "day" => "03",
+      "month" => "02",
       "year" => "20"
     }
     assert_equal expected, validator.start_date_parts
