@@ -8,6 +8,8 @@ class ShifterTest < Minitest::Test
 
   def setup
     @shifter = Shifter.new("02715", "040895")
+    @shifter.set_key
+    @shifter.set_date
   end
 
   def test_it_exists
@@ -15,8 +17,8 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_has_a_key_and_a_date
-    assert_equal "02715", @shifter.key
-    assert_equal "040895", @shifter.date
+    assert_equal "02715", @shifter.set_key
+    assert_equal "040895", @shifter.set_date
   end
 
   def test_it_can_create_key_shift
