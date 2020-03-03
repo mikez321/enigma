@@ -45,8 +45,8 @@ class Validator
   def start_date_parts
     date_pairs = @start_date.chars.each_slice(2).map { |num| num }
     dmy = {}
-      dmy["month"] = date_pairs[0].join("")
-      dmy["day"] = date_pairs[1].join("")
+      dmy["day"] = date_pairs[0].join("")
+      dmy["month"] = date_pairs[1].join("")
       dmy["year"] = date_pairs[2].join("")
       dmy
   end
