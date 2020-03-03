@@ -2,7 +2,7 @@ require './lib/validator'
 require './modules/referenceable'
 class Shifter
   include Referenceable
-  def initialize(passed_key, passed_date)
+  def initialize(passed_key = nil, passed_date = nil)
     @passed_key = passed_key
     @passed_date = passed_date
   end
