@@ -70,14 +70,4 @@ class Validator
     end
   end
 
-  # def error_message
-  #   if @given_key_used == false
-  #     puts "WARNING: The given key was invalid or missing."
-  #   end
-  #
-  #   if @given_date_used == false
-  #     puts "WARNING: The given date was invalid or missing."
-  #   end
-  # end
-
 end
