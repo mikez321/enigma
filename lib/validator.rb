@@ -2,7 +2,7 @@ require './modules/referenceable'
 require 'date'
 class Validator
   include Referenceable
-  attr_reader :valid_key
+  attr_reader :valid_key, :valid_date
   def initialize(start_key = nil, start_date = nil)
     @start_key = start_key
     @start_date = start_date
@@ -22,7 +22,7 @@ class Validator
     @start_key != nil && start_key_length == 5 && start_key_only_numbers?
   end
 
-  def validate_key
+  def validate_start_key
     if valid_start_key?
       @valid_key = @start_key
     else
@@ -51,7 +51,7 @@ class Validator
       dmy
   end
 
-  def real_date?
+  def start_date_real?
     d = start_date_parts["day"].to_i
     m = start_date_parts["month"].to_i
     y = ("20" + start_date_parts["year"]).to_i
@@ -59,15 +59,16 @@ class Validator
   end
 
   def valid_start_date?
-    start_date_length == 6 && real_date?
+    @start_date != nil && start_date_length == 6 && start_date_only_numbers? && start_date_real?
   end
 
-  #   if @date == nil || @date.chars.map { |num| numbers.include?(num) }.all?(false) || @date.length !=6
-  #     @date = Date.today.strftime("%d%m%y")
-  #   end
-  #   @given_date_used = false
-  #   @date
-  # end
+  def validate_start_date
+    if valid_start_date?
+      @valid_date = @start_date
+    else
+      @valid_date = Date.today.strftime("%d%m%y")
+    end
+  end
 
   # def error_message
   #   if @given_key_used == false
