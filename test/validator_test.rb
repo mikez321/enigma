@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './lib/validator'
 require 'date'
 require 'minitest/autorun'
